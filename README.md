@@ -1,9 +1,3 @@
-Perfect — let’s update the README to mention that the site is live on GitHub Pages too.
-
-Here’s the improved version:
-
----
-
 # Global Browser Directory 🌎
 
 A static educational website that provides information about web browsers from around the world. It highlights different browsers, their unique features, and functionalities.
