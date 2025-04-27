@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Web Browsers & Their Functionalities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .browser-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .feature-badge {
+            transition: all 0.3s ease;
+        }
+        .feature-badge:hover {
+            transform: scale(1.05);
+        }
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+        .continent-tab.active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .browser-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-800 text-white py-8 px-4 shadow-lg">
+        <div class="container mx-auto">
+            <!-- Title -->
+            <div class="flex justify-between items-center flex-wrap gap-4">
+                <h1 class="text-4xl font-bold">🌍 Global Web Browsers</h1>
+            </div>
+            
+            <!-- Subtitle -->
+            <p class="text-xl opacity-90 mt-2">Explore browsers from around the world and their unique functionalities</p>
+            
+            <!-- Search bar -->
+            <div class="mt-6 relative max-w-2xl mx-auto">
+                <input type="text" placeholder="Search browsers or features..."
+                        class="search-box w-full py-3 pr-14 pl-5 rounded-full text-gray-800 focus:ring-2 focus:ring-blue-300">
+                <button class="absolute top-1/2 right-3 -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Creator Info -->
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 text-lg font-semibold text-white">
+                <span class="text-xl">Created by</span>
+                <a href="https://github.com/Gianguyen1234" target="_blank" rel="noopener noreferrer"
+                   class="text-white hover:text-blue-200 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span>Holy_Dev</span>
+                </a>
+                <a href="https://www.youtube.com/@dev-maniac2349" target="_blank" rel="noopener noreferrer"
+                   class="text-white hover:text-blue-200 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                    <span>YouTube</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex overflow-x-auto pb-2 mb-6 scrollbar-hide">
+            <button class="continent-tab active px-4 py-2 mx-1 whitespace-nowrap" data-continent="all">All Browsers</button>
+            <button class="continent-tab px-4 py-2 mx-1 whitespace-nowrap" data-continent="north-america">North America</button>
+            <button class="continent-tab px-4 py-2 mx-1 whitespace-nowrap" data-continent="europe">Europe</button>
+            <button class="continent-tab px-4 py-2 mx-1 whitespace-nowrap" data-continent="asia">Asia</button>
+            <button class="continent-tab px-4 py-2 mx-1 whitespace-nowrap" data-continent="africa">Africa</button>
+            <button class="continent-tab px-4 py-2 mx-1 whitespace-nowrap" data-continent="south-america">South America</button>
+            <button class="continent-tab px-4 py-2 mx-1 whitespace-nowrap" data-continent="oceania">Oceania</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="browsers-container">
+            <!-- Browser cards will be inserted here by JavaScript -->
+        </div>
+    </div>
+    
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Global Browser Directory. All information is provided for educational purposes.</p>
+            
+            <div class="mt-4 flex justify-center space-x-4 text-xl">
+                <a href="https://github.com/Gianguyen1234" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@dev-maniac2349" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <p class="mt-4 text-sm opacity-70">
+                created by 
+                <a href="https://www.youtube.com/@dev-maniac2349" class="underline hover:text-blue-300" target="_blank" rel="noopener noreferrer">Holy_Dev</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Browser data
+        const browsers = [
+            {
+                name: "Google Chrome",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png",
+                developer: "Google",
+                origin: "United States",
+                continent: "north-america",
+                release: 2008,
+                features: [
+                    "Fast browsing with V8 JavaScript engine",
+                    "Seamless Google account integration",
+                    "Extensive extension ecosystem",
+                    "Cross-platform synchronization",
+                    "Built-in translation",
+                    "Progressive Web App support"
+                ],
+                color: "bg-blue-100 border-blue-300"
+            },
+            {
+                name: "Mozilla Firefox",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png",
+                developer: "Mozilla Foundation",
+                origin: "United States",
+                continent: "north-america",
+                release: 2002,
+                features: [
+                    "Open-source and privacy-focused",
+                    "Enhanced Tracking Protection",
+                    "Pocket integration",
+                    "Customizable interface",
+                    "Multi-account containers",
+                    "WebVR support"
+                ],
+                color: "bg-orange-100 border-orange-300"
+            },
+            {
+                name: "Microsoft Edge",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Microsoft_Edge_logo_%282019%29.svg/1200px-Microsoft_Edge_logo_%282019%29.svg.png",
+                developer: "Microsoft",
+                origin: "United States",
+                continent: "north-america",
+                release: 2015,
+                features: [
+                    "Chromium-based with Microsoft services",
+                    "Collections for research",
+                    "Vertical tabs",
+                    "Sleeping tabs to save resources",
+                    "Built-in PDF reader",
+                    "Windows integration"
+                ],
+                color: "bg-blue-50 border-blue-200"
+            },
+            {
+                name: "Safari",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Safari_browser_logo.svg/1200px-Safari_browser_logo.svg.png",
+                developer: "Apple",
+                origin: "United States",
+                continent: "north-america",
+                release: 2003,
+                features: [
+                    "Optimized for Apple devices",
+                    "Energy efficient",
+                    "iCloud Keychain sync",
+                    "Reader mode",
+                    "Apple Pay integration",
+                    "Privacy Report"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Opera",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Opera_2015_icon.svg/1200px-Opera_2015_icon.svg.png",
+                developer: "Opera Software",
+                origin: "Norway",
+                continent: "europe",
+                release: 1995,
+                features: [
+                    "Built-in VPN",
+                    "Battery saver mode",
+                    "Flow for cross-device sharing",
+                    "Workspaces for tab organization",
+                    "Cryptocurrency wallet",
+                    "Built-in messengers"
+                ],
+                color: "bg-red-100 border-red-300"
+            },
+            {
+                name: "Yandex Browser",
+                logo: "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHM0OYfiFeMI2p9MWie0CvL99U4GA1gf6_kayTt_kBblFwHwo8BW8JXlqfnYxKPmmBVHUxFRQq9H9OHp6QfMsh3uodrmBXaHR2eyG_jVmY1ZWygQFRolZLf9iEauQPolB4UsjmN48Pw6NXzcPqJBB0uc-&format=source&h=115",
+                developer: "Yandex",
+                origin: "Russia",
+                continent: "europe",
+                release: 2012,
+                features: [
+                    "Turbo mode for slow connections",
+                    "Built-in translator",
+                    "DNS spoofing protection",
+                    "SmartBox search",
+                    "Yandex Disk integration",
+                    "Gesture controls"
+                ],
+                color: "bg-yellow-100 border-yellow-300"
+            },
+            {
+                name: "UC Browser",
+                logo: "https://bsmedia.business-standard.com/_media/bs/img/article/2017-11/15/full/1510732667-5042.jpg?im=FeatureCrop,size=(826,465)",
+                developer: "UCWeb (Alibaba)",
+                origin: "China",
+                continent: "asia",
+                release: 2004,
+                features: [
+                    "Data compression technology",
+                    "Night mode",
+                    "Download manager",
+                    "Ad blocker",
+                    "Gesture navigation",
+                    "Video pop-out"
+                ],
+                color: "bg-green-100 border-green-300"
+            },
+            {
+                name: "QQ Browser",
+                logo: "https://scontent.fdad1-4.fna.fbcdn.net/v/t39.30808-6/308795196_182382270984789_2137510746339395222_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=-hDE5s95U3UQ7kNvwEZOu_Y&_nc_oc=Adki-HedOb4E6sjcI4zynXoq-xJaz0B4Ufls9RnpbXA5aJ9FnbxNdNPnWr8h_kdSH2U&_nc_zt=23&_nc_ht=scontent.fdad1-4.fna&_nc_gid=GSCBsrwNh9ITf89W7Na3ww&oh=00_AfHcAPCAF0H3NDtECUdEphDOzW_1Q6VONYmfpEpg-4V40Q&oe=6812C565",
+                developer: "Tencent",
+                origin: "China",
+                continent: "asia",
+                release: 2008,
+                features: [
+                    "WeChat integration",
+                    "File management system",
+                    "QR code scanner",
+                    "News feed",
+                    "Video acceleration",
+                    "Cloud storage"
+                ],
+                color: "bg-green-50 border-green-200"
+            },
+            {
+                name: "Naver Whale",
+                logo: "https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/356059885_292822909757647_117960365019869193_n.png?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=KYg4T2e6o1IQ7kNvwFtRQp-&_nc_oc=AdkNvuunyRP2_GaWpBftqIsL48Jb2I0Q9Fy6PWXjQVCaUftu97Rvap8ihx6BEc69UVw&_nc_zt=23&_nc_ht=scontent.fdad1-3.fna&_nc_gid=58aGbtc5PSCFXIP5Z2J2Qg&oh=00_AfGC4Y7B8zTE6_0LZNDi_XtzVHz2WBG40x8qG1ZNPjWd0Q&oe=6813DACE",
+                developer: "Naver",
+                origin: "South Korea",
+                continent: "asia",
+                release: 2016,
+                features: [
+                    "Sidebar with Naver services",
+                    "Memo function",
+                    "Quick search",
+                    "Whale Space for organizing tabs",
+                    "Screenshot tools",
+                    "Dark mode"
+                ],
+                color: "bg-indigo-100 border-indigo-300"
+            },
+            {
+                name: "Maxthon",
+                logo: "/logo/maxthon-browser.svg",
+                developer: "Maxthon Ltd",
+                origin: "China",
+                continent: "asia",
+                release: 2002,
+                features: [
+                    "Dual rendering engines",
+                    "Cloud sync",
+                    "Resource sniffer",
+                    "Magic Fill for forms",
+                    "RSS reader",
+                    "Ad blocker"
+                ],
+                color: "bg-blue-100 border-blue-200"
+            },
+            {
+                name: "Brave",
+                logo: "/logo/brave-browser-nightly.svg",
+                developer: "Brave Software",
+                origin: "United States",
+                continent: "north-america",
+                release: 2016,
+                features: [
+                    "Built-in ad blocker",
+                    "Privacy-focused",
+                    "BAT cryptocurrency rewards",
+                    "Tor integration",
+                    "IPFS support",
+                    "Customizable shields"
+                ],
+                color: "bg-orange-50 border-orange-200"
+            },
+            {
+                name: "Vivaldi",
+                logo: "/logo/vivaldi.svg",
+                developer: "Vivaldi Technologies",
+                origin: "Norway",
+                continent: "europe",
+                release: 2016,
+                features: [
+                    "Highly customizable UI",
+                    "Tab stacking",
+                    "Notes feature",
+                    "Built-in email client",
+                    "Mouse gestures",
+                    "Command line control"
+                ],
+                color: "bg-purple-100 border-purple-300"
+            },
+            {
+                name: "Samsung Internet",
+                logo: "/logo/samsung-internet.svg",
+                developer: "Samsung",
+                origin: "South Korea",
+                continent: "asia",
+                release: 2012,
+                features: [
+                    "Optimized for Samsung devices",
+                    "Video assistant",
+                    "Secret mode",
+                    "Content blocker support",
+                    "Smart anti-tracking",
+                    "High contrast mode"
+                ],
+                color: "bg-blue-100 border-blue-200"
+            },
+            {
+                name: "Puffin",
+                logo: "https://static.macupdate.com/products/63494/m/puffin-logo.webp?v=1632818766",
+                developer: "CloudMosa",
+                origin: "United States",
+                continent: "north-america",
+                release: 2010,
+                features: [
+                    "Cloud-based processing",
+                    "Flash support",
+                    "Data compression",
+                    "Virtual trackpad",
+                    "Gamepad support",
+                    "Incognito mode"
+                ],
+                color: "bg-purple-50 border-purple-200"
+            },
+            {
+                name: "DuckDuckGo Browser",
+                logo: "https://play-lh.googleusercontent.com/KE0R9mIrxZ37mTGD6IWW0Rjplj0bQrrencXfW9-jTAP-1MvFa6qNal8I6ufwYb2MDNo=w240-h480",
+                developer: "DuckDuckGo",
+                origin: "United States",
+                continent: "north-america",
+                release: 2018,
+                features: [
+                    "Privacy by default",
+                    "Tracker blocking",
+                    "Fire button to clear data",
+                    "Encrypted sync",
+                    "Smarter encryption",
+                    "Privacy grade ratings"
+                ],
+                color: "bg-yellow-50 border-yellow-200"
+            },
+            {
+                name: "Tor Browser",
+                logo: "/logo/browser-tor.svg",
+                developer: "Tor Project",
+                origin: "United States",
+                continent: "north-america",
+                release: 2008,
+                features: [
+                    "Anonymous browsing",
+                    "Onion routing",
+                    "Built-in NoScript",
+                    "HTTPS Everywhere",
+                    "Circuit display",
+                    "Anti-fingerprinting"
+                ],
+                color: "bg-purple-100 border-purple-200"
+            },
+            {
+                name: "Epic Privacy Browser",
+                logo: "https://play-lh.googleusercontent.com/fK7sNgC6gPtsJUOU6v6qJHvH9wo3gi2O3XHV3unB6arktwBiWeUXAmOUl0lhXNlnKA=w240-h480",
+                developer: "Hidden Reflex",
+                origin: "India",
+                continent: "asia",
+                release: 2013,
+                features: [
+                    "One-click encrypted proxy",
+                    "Built-in ad blocker",
+                    "Anti-fingerprinting",
+                    "No data collection",
+                    "Forget button",
+                    "No WebRTC leaks"
+                ],
+                color: "bg-red-50 border-red-200"
+            },
+            {
+                name: "Falkon",
+                logo: "https://p7.hiclipart.com/preview/70/340/965/falkon-web-browser-kde-computer-software-computer-program-open-source-summit.jpg",
+                developer: "KDE",
+                origin: "Germany",
+                continent: "europe",
+                release: 2017,
+                features: [
+                    "QtWebEngine based",
+                    "Lightweight",
+                    "Ad blocker",
+                    "Bookmark manager",
+                    "Mouse gestures",
+                    "Speed dial"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Waterfox",
+                logo: "https://play-lh.googleusercontent.com/u4zzztxSqLV5qEwhilp8RTP6N0O8BinOVfUs7TN_qeGhWSA86iZ9TM1rPa1lu9o1Kkg=w240-h480",
+                developer: "System1",
+                origin: "United Kingdom",
+                continent: "europe",
+                release: 2011,
+                features: [
+                    "Firefox fork",
+                    "Supports legacy extensions",
+                    "Privacy focused",
+                    "Tracking protection",
+                    "Multi-process architecture",
+                    "Customizable"
+                ],
+                color: "bg-blue-100 border-blue-200"
+            },
+            {
+                name: "Pale Moon",
+                logo: "https://upload.wikimedia.org/wikipedia/en/a/a2/Pale_Moon_browser_icon.png",
+                developer: "Moonchild Productions",
+                origin: "Netherlands",
+                continent: "europe",
+                release: 2009,
+                features: [
+                    "Firefox fork",
+                    "Classic UI",
+                    "XUL extension support",
+                    "Optimized for modern processors",
+                    "Customizable",
+                    "Independent development"
+                ],
+                color: "bg-purple-50 border-purple-100"
+            },
+            {
+                name: "Midori",
+                logo: "https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/489870184_1193273492809020_7079354034012188065_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7wLIt9uaOJYQ7kNvwGBsZYy&_nc_oc=Adkeesxmfcc1y_8d-n4ya7YCSVdbF_wHGi7VjZbVxbHnYHymfF50lkdSfA6BVdCzSvs&_nc_zt=23&_nc_ht=scontent.fdad1-3.fna&_nc_gid=67ypaBPVa-10h_wvNRO6Ew&oh=00_AfHriEPLX3s7JthNWFvy7E4AKaIwjSsf1s4tFJyTPfDbIA&oe=6813CC58",
+                developer: "Christian Dywan",
+                origin: "Japan",
+                continent: "asia",
+                release: 2007,
+                features: [
+                    "Lightweight",
+                    "WebKit engine",
+                    "Privacy protection",
+                    "Extensions support",
+                    "Customizable interface",
+                    "Session management"
+                ],
+                color: "bg-green-50 border-green-100"
+            },
+            {
+                name: "Sleipnir",
+                logo: "https://play-lh.googleusercontent.com/C5blC5XaaCWe2p1NLPQJzNw5NujztuheP6fTFdLdCP1ivYzefCnUW0_zzMrBmPgQfluS=w240-h480",
+                developer: "Fenrir Inc.",
+                origin: "Japan",
+                continent: "asia",
+                release: 2004,
+                features: [
+                    "Gesture controls",
+                    "Tab grouping",
+                    "Visual bookmarks",
+                    "Mouse actions",
+                    "Customizable UI",
+                    "Sync across devices"
+                ],
+                color: "bg-indigo-50 border-indigo-100"
+            },
+            {
+                name: "Lunascape",
+                logo: "https://play-lh.googleusercontent.com/IbSterKMI5rdPXTID0cnBayUo0QEgduYoUzp_eTCXtXEYlyKCiZeUTlynOKSOtGKPg=w240-h480",
+                developer: "Lunascape Corporation",
+                origin: "Japan",
+                continent: "asia",
+                release: 2007,
+                features: [
+                    "Triple engine support",
+                    "Mouse gestures",
+                    "Tab grouping",
+                    "Customizable skins",
+                    "Super Drag & Drop",
+                    "Session manager"
+                ],
+                color: "bg-red-50 border-red-100"
+            },
+            {
+                name: "Avast Secure Browser",
+                logo: "https://play-lh.googleusercontent.com/3rDKlROR1UxVkifR3IPdwRPq0NBjVdz_iR0cAKbuxmMew5dyWDLhSJq-iAp0lH4OXg=w240-h480",
+                developer: "Avast",
+                origin: "Czech Republic",
+                continent: "europe",
+                release: 2016,
+                features: [
+                    "Built-in security features",
+                    "Ad blocker",
+                    "Anti-phishing",
+                    "Anti-fingerprinting",
+                    "Bank Mode",
+                    "Password manager"
+                ],
+                color: "bg-green-100 border-green-200"
+            },
+            {
+                name: "Comodo Dragon",
+                logo: "https://c0.klipartz.com/pngpicture/245/701/sticker-png-comodo-dragon-web-browser-comodo-icedragon-comodo-group-chromium-firefox-dragon-trademark-logo-google-chrome-web-browser.png",
+                developer: "Comodo Group",
+                origin: "United States",
+                continent: "north-america",
+                release: 2010,
+                features: [
+                    "Chromium-based with security",
+                    "Secure DNS",
+                    "Privacy protection",
+                    "Built-in SSL certificate",
+                    "Site inspector",
+                    "Sandboxing"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "360 Secure Browser",
+                logo: "https://a0.anyrgb.com/pngimg/1930/310/360-secure-browser-sap-logo-mobile-browser-trojan-horse-internet-explorer-bookmark-google-chrome-computer-security-web-browser-android.png",
+                developer: "Qihoo 360",
+                origin: "China",
+                continent: "asia",
+                release: 2010,
+                features: [
+                    "Dual-core engine",
+                    "Malware protection",
+                    "Ad blocker",
+                    "Incognito mode",
+                    "Download manager",
+                    "Cloud sync"
+                ],
+                color: "bg-green-50 border-green-100"
+            },
+            {
+                name: "Coc Coc",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/C%E1%BB%91c_C%E1%BB%91c_logo.svg",
+                developer: "Coc Coc",
+                origin: "Vietnam",
+                continent: "asia",
+                release: 2013,
+                features: [
+                    "Optimized for Vietnamese",
+                    "Built-in dictionary",
+                    "Video downloader",
+                    "Facebook integration",
+                    "Smart search",
+                    "Cloud sync"
+                ],
+                color: "bg-red-100 border-red-200"
+            },
+            {
+                name: "Baidu Browser",
+                logo: "https://www.techspot.com/images2/downloads/topdownload/2015/01/spark-p.webp",
+                developer: "Baidu",
+                origin: "China",
+                continent: "asia",
+                release: 2011,
+                features: [
+                    "Baidu services integration",
+                    "Smart address bar",
+                    "Video pop-out",
+                    "Gesture controls",
+                    "Cloud sync",
+                    "Download accelerator"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Sogou Explorer",
+                logo: "https://1000logos.net/wp-content/uploads/2020/09/Sogou-Explorer-logo.png",
+                developer: "Sogou",
+                origin: "China",
+                continent: "asia",
+                release: 2010,
+                features: [
+                    "Dual-core engine",
+                    "Smart form filling",
+                    "Video downloader",
+                    "Gesture controls",
+                    "Cloud sync",
+                    "Built-in translation"
+                ],
+                color: "bg-green-50 border-green-100"
+            },
+            {
+                name: "MxNitro",
+                logo: "https://www.techspot.com/images2/downloads/topdownload/2014/09/mxnitro-p_256.webp",
+                developer: "Maxthon",
+                origin: "China",
+                continent: "asia",
+                release: 2014,
+                features: [
+                    "Lightweight",
+                    "Fast startup",
+                    "Minimalist UI",
+                    "Ad blocker",
+                    "Incognito mode",
+                    "Quick access"
+                ],
+                color: "bg-blue-100 border-blue-200"
+            },
+            {
+                name: "Dooble",
+                logo: "https://www.techspot.com/images2/downloads/topdownload/2016/12/dooble-p.webp",
+                developer: "Dooble Project",
+                origin: "United States",
+                continent: "north-america",
+                release: 2009,
+                features: [
+                    "Privacy focused",
+                    "No persistent cookies",
+                    "History erasure",
+                    "Customizable interface",
+                    "Multiple search engines",
+                    "Session management"
+                ],
+                color: "bg-purple-50 border-purple-100"
+            },
+            {
+                name: "Otter Browser",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Otter_Browser_Logo.svg",
+                developer: "Otter Browser Team",
+                origin: "Poland",
+                continent: "europe",
+                release: 2014,
+                features: [
+                    "Classic browser UI",
+                    "QtWebEngine based",
+                    "Bookmark manager",
+                    "Session management",
+                    "Customizable interface",
+                    "Mouse gestures"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Qutebrowser",
+                logo: "https://www.logo.wine/a/logo/Qutebrowser/Qutebrowser-Logo.wine.svg",
+                developer: "The qutebrowser developers",
+                origin: "Germany",
+                continent: "europe",
+                release: 2014,
+                features: [
+                    "Keyboard-driven",
+                    "Minimalist",
+                    "Vim-like controls",
+                    "Ad blocking",
+                    "Customizable",
+                    "Lightweight"
+                ],
+                color: "bg-green-50 border-green-100"
+            },
+            {
+                name: "Basilisk",
+                logo: "https://cdn.lo4d.com/t/icon/128/basilisk.png",
+                developer: "Moonchild Productions",
+                origin: "Netherlands",
+                continent: "europe",
+                release: 2017,
+                features: [
+                    "Firefox fork",
+                    "Classic UI",
+                    "XUL extension support",
+                    "Modern web standards",
+                    "Customizable",
+                    "Independent development"
+                ],
+                color: "bg-purple-50 border-purple-100"
+            },
+            {
+                name: "SeaMonkey",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/e/e8/SeaMonkey.svg",
+                developer: "SeaMonkey Council",
+                origin: "United States",
+                continent: "north-america",
+                release: 2005,
+                features: [
+                    "All-in-one internet suite",
+                    "Email client",
+                    "IRC chat",
+                    "HTML editor",
+                    "Web development tools",
+                    "Classic UI"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Konqueror",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/7/74/Breezeicons-apps-48-konqueror.svg",
+                developer: "KDE",
+                origin: "Germany",
+                continent: "europe",
+                release: 1996,
+                features: [
+                    "File manager integration",
+                    "KHTML engine",
+                    "WebKit support",
+                    "KDE integration",
+                    "Customizable",
+                    "Lightweight"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "NetSurf",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/NetSurf-logo.svg",
+                developer: "NetSurf Developers",
+                origin: "United Kingdom",
+                continent: "europe",
+                release: 2002,
+                features: [
+                    "Lightweight",
+                    "Multi-platform",
+                    "Custom CSS support",
+                    "Bookmark manager",
+                    "No JavaScript",
+                    "Fast rendering"
+                ],
+                color: "bg-green-50 border-green-100"
+            },
+            {
+                name: "Dillo",
+                logo: "https://d4.alternativeto.net/NRSbmVc77tZMQMtRE--fclTGifE56oS3zaneGhkbs7w/rs:fill:760:380:0/g:ce:0:0/YWJzOi8vZGlzdC9jb250ZW50LzE3MTUwMDQ4Mjc0OTIucG5n.png",
+                developer: "Dillo Team",
+                origin: "Costa Rica",
+                continent: "south-america",
+                release: 1999,
+                features: [
+                    "Extremely lightweight",
+                    "Fast rendering",
+                    "No JavaScript",
+                    "Minimal resource usage",
+                    "Simple interface",
+                    "Customizable"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Links",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Links_web_browser_logo.png",
+                developer: "Twibright Labs",
+                origin: "Czech Republic",
+                continent: "europe",
+                release: 1999,
+                features: [
+                    "Text-based",
+                    "Lightweight",
+                    "Graphical mode available",
+                    "Table rendering",
+                    "Mouse support",
+                    "Customizable"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "w3m",
+                logo: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fthepracticaldev.s3.amazonaws.com%2Fi%2Fk7fa26qsc7ffrnyq36qk.png",
+                developer: "Akinori Ito",
+                origin: "Japan",
+                continent: "asia",
+                release: 1995,
+                features: [
+                    "Text-based",
+                    "Tabbed browsing",
+                    "Mouse support",
+                    "Image display",
+                    "Customizable",
+                    "Lightweight"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            },
+            {
+                name: "Lynx",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Lynx-wikipedia.png",
+                developer: "University of Kansas",
+                origin: "United States",
+                continent: "north-america",
+                release: 1992,
+                features: [
+                    "Text-only",
+                    "Lightweight",
+                    "Keyboard navigation",
+                    "No JavaScript",
+                    "Simple interface",
+                    "Fast loading"
+                ],
+                color: "bg-blue-50 border-blue-100"
+            }
+        ];
+
+        // Function to render browser cards
+        function renderBrowsers(filter = 'all') {
+            const container = document.getElementById('browsers-container');
+            container.innerHTML = '';
+            
+            const filteredBrowsers = filter === 'all' 
+                ? browsers 
+                : browsers.filter(browser => browser.continent === filter);
+            
+            filteredBrowsers.forEach(browser => {
+                const card = document.createElement('div');
+                card.className = `browser-card rounded-lg border ${browser.color} p-6 shadow-md transition-all duration-300`;
+                
+                card.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md mr-4">
+                            <img src="${browser.logo}" alt="${browser.name} logo" class="browser-logo">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">${browser.name}</h3>
+                            <p class="text-sm text-gray-600">${browser.developer} • ${browser.origin} • ${browser.release}</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-700 mb-2">Key Features:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${browser.features.map(feature => 
+                                `<span class="feature-badge text-xs bg-white px-3 py-1 rounded-full border border-gray-200 shadow-sm">${feature}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="px-3 py-1 bg-white rounded-full shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            ${browser.origin}
+                        </span>
+                        <span class="px-3 py-1 bg-white rounded-full shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            ${browser.release}
+                        </span>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBrowsers();
+            
+            // Tab switching
+            const tabs = document.querySelectorAll('.continent-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    renderBrowsers(tab.dataset.continent);
+                });
+            });
+            
+            // Search functionality
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                if (searchTerm.length > 2) {
+                    const filtered = browsers.filter(browser => 
+                        browser.name.toLowerCase().includes(searchTerm) ||
+                        browser.developer.toLowerCase().includes(searchTerm) ||
+                        browser.features.some(f => f.toLowerCase().includes(searchTerm))
+                    );
+                    
+                    const container = document.getElementById('browsers-container');
+                    container.innerHTML = '';
+                    
+                    if (filtered.length === 0) {
+                        container.innerHTML = `
+                            <div class="col-span-full text-center py-12">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <h3 class="text-xl font-semibold">No browsers found</h3>
+                                <p class="text-gray-600">Try a different search term</p>
+                            </div>
+                        `;
+                    } else {
+                        filtered.forEach(browser => {
+                            const card = document.createElement('div');
+                            card.className = `browser-card rounded-lg border ${browser.color} p-6 shadow-md transition-all duration-300`;
+                            
+                            card.innerHTML = `
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md mr-4">
+                                        <img src="${browser.logo}" alt="${browser.name} logo" class="browser-logo">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold">${browser.name}</h3>
+                                        <p class="text-sm text-gray-600">${browser.developer} • ${browser.origin} • ${browser.release}</p>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h4 class="font-semibold text-gray-700 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        ${browser.features.map(feature => 
+                                            `<span class="feature-badge text-xs bg-white px-3 py-1 rounded-full border border-gray-200 shadow-sm">${feature}</span>`
+                                        ).join('')}
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="px-3 py-1 bg-white rounded-full shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        ${browser.origin}
+                                    </span>
+                                    <span class="px-3 py-1 bg-white rounded-full shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        ${browser.release}
+                                    </span>
+                                </div>
+                            `;
+                            
+                            container.appendChild(card);
+                        });
+                    }
+                } else if (searchTerm.length === 0) {
+                    const activeTab = document.querySelector('.continent-tab.active');
+                    renderBrowsers(activeTab.dataset.continent);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
