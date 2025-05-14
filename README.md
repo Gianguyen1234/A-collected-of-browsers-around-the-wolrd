@@ -22,7 +22,7 @@ Explore browsers from around the world and discover their unique functionalities
 
 ## Live Demo
 
-You can check out the live website here: [View on GitHub Pages](https://gianguyen1234.github.io/A-collected-of-browsers-around-the-wolrd/)
+You can check out the live website here: [View on GitHub Pages](https://gianguyen1234.github.io/A-collected-of-browsers-around-the-world/)
 
 ## How to Use
 
